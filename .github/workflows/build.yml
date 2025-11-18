@@ -25,7 +25,6 @@ jobs:
           git clone --single-branch --branch feat/cxx_module https://github.com/Silverlan/luabind-deboostified.git luabind
 
       - name: Configure and build with CMake
-        working-directory: external-repo
         run: |
           cd luabind
           mkdir -p build
