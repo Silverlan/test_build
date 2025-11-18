@@ -79,7 +79,7 @@ jobs:
         shell: bash
         run: |
           curDir="$PWD"
-          gccDir = "$curDir/gcc-15"
+          gccDir="$curDir/gcc-15"
           # register main frontends (adjust priority integer if you want different default priority)
           sudo update-alternatives --install /usr/bin/gcc  gcc  $gccDir/bin/gcc  100
           sudo update-alternatives --install /usr/bin/g++  g++  $gccDir/bin/g++  100
