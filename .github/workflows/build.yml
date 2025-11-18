@@ -31,7 +31,7 @@ jobs:
       - name: Download and extract tar.xz
         run: |
           # URL of the .tar.xz to download
-          ARCHIVE_URL="https://github.com/Silverlan/clang_prebuilt/releases/download/2025-11-17/linux_x64.tar.xz"
+          ARCHIVE_URL="https://github.com/Silverlan/clang_prebuilt/releases/download/2025-11-16/linux_x64.tar.xz"
 
           # destination inside the cloned repo (create if needed)
           DEST_DIR="clang"
