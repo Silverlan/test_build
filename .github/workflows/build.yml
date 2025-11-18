@@ -13,6 +13,48 @@ jobs:
       - name: Checkout this repository
         uses: actions/checkout@v4
 
+
+
+      - name: Download and extract gcc-15
+        shell: bash
+        run: |
+          # URL of the .tar.xz to download
+          ARCHIVE_URL="https://github.com/Silverlan/test_gcc15/releases/download/2025-11-17/gcc-15.2.0.tar.xz"
+
+          # destination inside the cloned repo (create if needed)
+          DEST_DIR="gcc-15"
+          mkdir -p "$DEST_DIR"
+
+          # download to a temp file
+          curl -L -o /tmp/archive.tar.xz "$ARCHIVE_URL"
+
+          # extract with xz decompression (-J); --strip-components=1 removes top-level folder
+          tar -xJf /tmp/archive.tar.xz -C "$DEST_DIR" --strip-components=1
+
+          ls
+
+      - name: Set gcc-15 as default
+        shell: bash
+        run: |
+          curDir="$PWD"
+          gccDir="$curDir/gcc-15"
+          # register main frontends (adjust priority integer if you want different default priority)
+          sudo update-alternatives --install /usr/bin/gcc  gcc  $gccDir/bin/gcc  100
+          sudo update-alternatives --install /usr/bin/g++  g++  $gccDir/bin/g++  100
+          sudo update-alternatives --install /usr/bin/cc   cc   $gccDir/bin/gcc  100
+          sudo update-alternatives --install /usr/bin/cpp  cpp  $gccDir/bin/cpp  100
+          # optional: gcov, gfortran, c++ etc. if present:
+          sudo update-alternatives --install /usr/bin/gcov gcov $gccDir/bin/gcov 100
+
+          echo "$gccDir/lib64" | sudo tee /etc/ld.so.conf.d/gcc-15.conf
+          echo "$gccDir/lib"   | sudo tee -a /etc/ld.so.conf.d/gcc-15.conf
+
+          # refresh cache
+          sudo ldconfig
+
+
+
+
       # Install build tools and cmake (apt-get provides a working version).
       - name: Install build dependencies
         shell: bash
@@ -57,42 +99,6 @@ jobs:
         run: |
           cp CMakeLists.txt luabind/
           # cp CMakeLists2.txt luabind/src/CMakeLists.txt
-
-      - name: Download and extract gcc-15
-        shell: bash
-        run: |
-          # URL of the .tar.xz to download
-          ARCHIVE_URL="https://github.com/Silverlan/test_gcc15/releases/download/2025-11-17/gcc-15.2.0.tar.xz"
-
-          # destination inside the cloned repo (create if needed)
-          DEST_DIR="gcc-15"
-          mkdir -p "$DEST_DIR"
-
-          # download to a temp file
-          curl -L -o /tmp/archive.tar.xz "$ARCHIVE_URL"
-
-          # extract with xz decompression (-J); --strip-components=1 removes top-level folder
-          tar -xJf /tmp/archive.tar.xz -C "$DEST_DIR" --strip-components=1
-
-
-      - name: Set gcc-15 as default
-        shell: bash
-        run: |
-          curDir="$PWD"
-          gccDir="$curDir/gcc-15"
-          # register main frontends (adjust priority integer if you want different default priority)
-          sudo update-alternatives --install /usr/bin/gcc  gcc  $gccDir/bin/gcc  100
-          sudo update-alternatives --install /usr/bin/g++  g++  $gccDir/bin/g++  100
-          sudo update-alternatives --install /usr/bin/cc   cc   $gccDir/bin/gcc  100
-          sudo update-alternatives --install /usr/bin/cpp  cpp  $gccDir/bin/cpp  100
-          # optional: gcov, gfortran, c++ etc. if present:
-          sudo update-alternatives --install /usr/bin/gcov gcov $gccDir/bin/gcov 100
-
-          echo "$gccDir/lib64" | sudo tee /etc/ld.so.conf.d/gcc-15.conf
-          echo "$gccDir/lib"   | sudo tee -a /etc/ld.so.conf.d/gcc-15.conf
-
-          # refresh cache
-          sudo ldconfig
 
       - name: Configure and build with CMake
         shell: bash
