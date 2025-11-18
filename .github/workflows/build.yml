@@ -52,6 +52,7 @@ jobs:
         shell: bash
         run: |
           cp CMakeLists.txt luabind/
+          cp CMakeLists2.txt luabind/src/CMakeLists.txt
 
       - name: Configure and build with CMake
         shell: bash
