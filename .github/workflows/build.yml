@@ -20,6 +20,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential cmake
 
+      - name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v2
+
       - name: Build Lua
         shell: bash
         run: |
@@ -52,7 +55,7 @@ jobs:
         shell: bash
         run: |
           cp CMakeLists.txt luabind/
-          cp CMakeLists2.txt luabind/src/CMakeLists.txt
+          # cp CMakeLists2.txt luabind/src/CMakeLists.txt
 
       - name: Configure and build with CMake
         shell: bash
