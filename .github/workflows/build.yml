@@ -51,7 +51,7 @@ jobs:
       - name: Configure and build with CMake
         shell: bash
         run: |
-          curDir="$PWD/pragma"
+          curDir="$PWD"
           cd luabind
           mkdir -p build
           export CC="$curDir/bin/clang"
