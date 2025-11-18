@@ -43,7 +43,7 @@ jobs:
           sudo update-alternatives --install /usr/bin/gcc  gcc  $gccDir/bin/gcc-15.2.0  100
           sudo update-alternatives --install /usr/bin/g++  g++  $gccDir/bin/g++-15.2.0  100
           sudo update-alternatives --install /usr/bin/cc   cc   $gccDir/bin/gcc-15.2.0  100
-          sudo update-alternatives --install /usr/bin/cpp  cpp  $gccDir/bin/cpp-15.2.0  100
+          # sudo update-alternatives --install /usr/bin/cpp  cpp  $gccDir/bin/cpp-15.2.0  100
           # optional: gcov, gfortran, c++ etc. if present:
           sudo update-alternatives --install /usr/bin/gcov gcov $gccDir/bin/gcov-15.2.0 100
 
