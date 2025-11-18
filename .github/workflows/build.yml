@@ -48,6 +48,11 @@ jobs:
         run: |
           git clone --single-branch --branch feat/cxx_module https://github.com/Silverlan/luabind-deboostified.git luabind
 
+      - name: Copy CMakeLists.txt
+        shell: bash
+        run: |
+          cp CMakeLists.txt luabind/
+
       - name: Configure and build with CMake
         shell: bash
         run: |
