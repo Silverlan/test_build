@@ -15,19 +15,30 @@ jobs:
 
       # Install build tools and cmake (apt-get provides a working version).
       - name: Install build dependencies
+        shell: bash
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential cmake
 
-      # Example 1: clone a public repo
+      - name: Build Lua
+        shell: bash
+        run: |
+          git clone https://github.com/Silverlan/LuaJIT.git
+          cd LuaJIT
+          cd src
+          make amalg BUILDMODE=dynamic
+
       - name: Clone external repository
+        shell: bash
         run: |
           git clone --single-branch --branch feat/cxx_module https://github.com/Silverlan/luabind-deboostified.git luabind
 
       - name: Configure and build with CMake
+        shell: bash
         run: |
+          curDir="$PWD/pragma"
           cd luabind
           mkdir -p build
-          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DLUA_INCLUDE_DIR="$curDir/LuaJIT/src" -DLUA_LIBRARIES="$curDir/src/libluajit-p.so"
           cmake --build build -- -j$(nproc)
 
