@@ -39,6 +39,6 @@ jobs:
           curDir="$PWD/pragma"
           cd luabind
           mkdir -p build
-          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DLUA_INCLUDE_DIR="$curDir/LuaJIT/src" -DLUA_LIBRARIES="$curDir/src/libluajit-p.so"
+          cmake -S . -B build -G "Ninja Multi-Config" -DCMAKE_BUILD_TYPE=Release -DLUA_INCLUDE_DIR="$curDir/LuaJIT/src" -DLUA_LIBRARIES="$curDir/src/libluajit-p.so"
           cmake --build build -- -j$(nproc)
 
