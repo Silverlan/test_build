@@ -57,7 +57,7 @@ jobs:
           export CC="$curDir/bin/clang"
           export CXX="$curDir/bin/clang++"
           cmake -S . -B build -G "Ninja Multi-Config" \
-            -DCMAKE_BUILD_TYPE=Release -DLUA_INCLUDE_DIR="$curDir/LuaJIT/src" -DLUA_LIBRARIES="$curDir/src/libluajit-p.so" \
+            -DCMAKE_BUILD_TYPE=Release -DLUA_INCLUDE_DIR="$curDir/LuaJIT/src" -DLUA_LIBRARIES="$curDir/LuaJIT/src/libluajit-p.so" \
             -DCMAKE_C_COMPILER="$curDir/clang/bin/clang" -DCMAKE_CXX_COMPILER="$curDir/clang/bin/clang++"
           cmake --build build -- -j$(nproc)
 
