@@ -43,6 +43,9 @@ jobs:
           # extract with xz decompression (-J); --strip-components=1 removes top-level folder
           tar -xJf /tmp/archive.tar.xz -C "$DEST_DIR" --strip-components=1
 
+          cd $DEST_DIR
+          ls -R
+
       - name: Clone external repository
         shell: bash
         run: |
