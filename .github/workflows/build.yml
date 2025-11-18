@@ -22,7 +22,7 @@ jobs:
       # Example 1: clone a public repo
       - name: Clone external repository
         run: |
-          git clone --depth=1 hhttps://github.com/Silverlan/luabind-deboostified.git luabind
+          git clone --depth=1 https://github.com/Silverlan/luabind-deboostified.git luabind
           cd luabind
           git checkout feat/cxx_module
 
