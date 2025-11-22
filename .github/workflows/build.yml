@@ -155,6 +155,11 @@ jobs:
           cp CMakeLists.txt luabind/
           # cp CMakeLists2.txt luabind/src/CMakeLists.txt
 
+      - name: Print
+        shell: bash
+        run: |
+          find . -type f -name "libstdc++.modules.json"
+
       - name: Configure and build with CMake
         shell: bash
         run: |
