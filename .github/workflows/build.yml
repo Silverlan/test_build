@@ -15,6 +15,27 @@ jobs:
 
 
 
+      - name: Setup Pragma
+        uses: Silverlan/pragma/github_actions/setup@feat/cxx_modules3
+        with:
+          branch: feat/cxx_modules3
+          clone_url: "https://github.com/pragma.git"
+
+      - name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v2
+
+      - name: Build Pragma
+        uses: Silverlan/pragma/github_actions/build@feat/cxx_modules3
+        id: build-pragma
+        with:
+          build-args: "--with-pfm --with-all-pfm-modules --with-vr --with-networking --with-lua-debugger=0 --with-swiftshader"
+
+
+
+
+
+
+
       - name: Download and extract gcc-15
         shell: bash
         run: |
