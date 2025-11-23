@@ -3,7 +3,8 @@
 # http://academic.cleardefinition.com/
 # Iowa State University HCI Graduate Program/VRAC
 
-cmake_minimum_required(VERSION 3.3)
+#cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.5)
 
 add_compile_options(-stdlib=libstdc++)
 add_link_options(-stdlib=libstdc++)
