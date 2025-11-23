@@ -109,7 +109,7 @@ jobs:
           export CC="$curDir/bin/clang"
           export CXX="$curDir/bin/clang++"
           # -DCMAKE_POLICY_VERSION_MINIMUM=4.0 \
-          cmake -S . -B build -G "Ninja Multi-Config" \
+          cmake -S . -B build -G "Ninja Multi-Config" -DCMAKE_CXX_SCAN_FOR_MODULES=ON \
             -DCMAKE_BUILD_TYPE=Release -DLUA_INCLUDE_DIR="$curDir/LuaJIT/src" -DLUA_LIBRARIES="$curDir/LuaJIT/src/libluajit-p.so" \
             -DCMAKE_C_COMPILER="$curDir/clang/bin/clang" -DCMAKE_CXX_COMPILER="$curDir/clang/bin/clang++" \
             -DCMAKE_CXX_STDLIB_MODULES_JSON="$curDir/gcc-15/lib64/libstdc++.modules.json"
