@@ -24,11 +24,11 @@ jobs:
       - name: Setup cmake
         uses: jwlawson/actions-setup-cmake@v2
 
-      - name: Build Pragma
-        uses: Silverlan/pragma/github_actions/build@feat/cxx_modules3
-        id: build-pragma
-        with:
-          build-args: "--with-pfm --with-all-pfm-modules --with-vr --with-networking --with-lua-debugger=0 --with-swiftshader"
+      #- name: Build Pragma
+      #  uses: Silverlan/pragma/github_actions/build@feat/cxx_modules3
+      #  id: build-pragma
+      #  with:
+      #    build-args: "--with-pfm --with-all-pfm-modules --with-vr --with-networking --with-lua-debugger=0 --with-swiftshader"
 
 
 
@@ -97,14 +97,14 @@ jobs:
       - name: Copy CMakeLists.txt
         shell: bash
         run: |
-          cp CMakeLists.txt luabind/
-          cp CMakeLists2.txt luabind/src/CMakeLists.txt
+          cp test_luabind/CMakeLists.txt luabind/
+          cp test_luabind/CMakeLists2.txt luabind/src/CMakeLists.txt
           
       - name: Configure and build with CMake
         shell: bash
         run: |
           curDir="$PWD"
-          cd luabind
+          #cd luabind
           mkdir -p build
           export CC="$curDir/bin/clang"
           export CXX="$curDir/bin/clang++"
