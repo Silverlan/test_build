@@ -15,11 +15,11 @@ jobs:
 
 
 
-      - name: Setup Pragma
-        uses: Silverlan/pragma/github_actions/setup@feat/cxx_modules3
-        with:
-          branch: feat/cxx_modules3
-          clone_url: "https://github.com/Silverlan/pragma.git"
+      #- name: Setup Pragma
+      #  uses: Silverlan/pragma/github_actions/setup@feat/cxx_modules3
+      #  with:
+      #    branch: feat/cxx_modules3
+      #    clone_url: "https://github.com/Silverlan/pragma.git"
 
       - name: Setup cmake
         uses: jwlawson/actions-setup-cmake@v2
