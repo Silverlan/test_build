@@ -104,7 +104,7 @@ jobs:
         shell: bash
         run: |
           curDir="$PWD"
-          #cd luabind
+          cd luabind
           mkdir -p build
           export CC="$curDir/bin/clang"
           export CXX="$curDir/bin/clang++"
